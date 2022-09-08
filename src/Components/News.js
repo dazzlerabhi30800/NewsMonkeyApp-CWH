@@ -7,10 +7,18 @@ export default class News extends Component {
         super();
         this.state = {
             loading: true,
+            articlesData: [],
         }
     }
+    async componentDidMount() {
+        let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=9e1bd06f25544f399975122857782f19";
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        this.setState({ articlesData: parsedData.articles });
+    }
     render() {
-        const newsComp = articles.map((article, index) => {
+        console.log('render')
+        const newsComp = this.state.articlesData.map((article, index) => {
             return (
                 <NewsItem
                     item={article}
@@ -20,12 +28,9 @@ export default class News extends Component {
         })
         return (
             <div className='p-4'>
-                <h1 className='font-bold text-indigo-800 text-xl text-center md:text-left'>NewsMonkey - Top Headlines</h1>
-                <div className='flex flex-wrap gap-6 my-4 w-full justify-center md:justify-start'>
+                <h1 className='font-bold text-indigo-800 text-xl text-center'>NewsMonkey - Top Headlines</h1>
+                <div className='flex flex-wrap gap-6 my-4 w-full justify-center'>
                     {newsComp}
-                    {/* <NewsItem title="Hello Title" description="Best in the world description is here" imageUrl="https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1099495_800x450.jpg" /> */}
-                    {/* <NewsItem title="Hello Title" description="Best in the world description is here" /> */}
-                    {/* <NewsItem title="Hello Title" description="Best in the world description is here" /> */}
                 </div>
             </div>
         )
