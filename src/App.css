@@ -5,4 +5,5 @@
 .App {
     transition: all .3s linear;
     background: #c9c4f3;
+    /* min-height: 100vh; */
 }
