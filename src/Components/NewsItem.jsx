@@ -16,7 +16,7 @@ export default class NewsItem extends Component {
                     <p className='my-2'>By <span className='text-white font-bold underline decoration-white'>- {item.author ? item.author : 'Unknown'}</span> On {new Date(item.publishedAt).toGMTString()}</p>
                     <a target="_blank" rel='norefferer' className='border-2 border-white py-1.5 px-4 w-fit text-white transition ease-in duration-300 cursor-pointer font-semibold hover:border-transparent hover:bg-white hover:text-indigo-400 mt-1' href={item.url}>Read More</a>
                 </div>
-                <span className='absolute -top-3 -right-3 text-white bg-orange-500 p-2 py-1 font-medium rounded-2xl text-sm'>{item.source.name}</span>
+                <span className='absolute -top-3 right-0 md:-right-3 text-white bg-orange-500 p-2 py-1 font-medium rounded-2xl text-sm'>{item.source.name}</span>
             </div>
         )
     }

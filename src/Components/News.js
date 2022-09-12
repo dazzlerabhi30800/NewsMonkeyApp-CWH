@@ -5,6 +5,8 @@ import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+
+
 export default class News extends Component {
     static defaultProps = {
         country: 'in',
@@ -30,8 +32,9 @@ export default class News extends Component {
     }
 
     async updateNews(pageNo) {
+        this.props.setProgress(10);
         this.setState({ loading: true });
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=9e1bd06f25544f399975122857782f19&page=${pageNo}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.apiKey}&page=${pageNo}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);
@@ -40,6 +43,7 @@ export default class News extends Component {
             totalResults: parsedData.totalResults,
             loading: false
         });
+        this.props.setProgress(100);
     }
 
     async componentDidMount() {
@@ -63,7 +67,7 @@ export default class News extends Component {
     // }
     fetchMoreData = async () => {
         this.setState({ page: this.state.page + 1 })
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=9e1bd06f25544f399975122857782f19&page=${this.state.page}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}&category=${this.props.category}`;
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);
@@ -93,20 +97,7 @@ export default class News extends Component {
                                 />
                             )
                         })}
-                        {/* {this.state.loading ?
-                        <Spinner />
-                        :
-                        (
-                            this.state.articlesData.map((article, index) => {
-                                return (
-                                    <NewsItem
-                                        item={article}
-                                        key={index}
-                                        />
-                                        )
-                                    })
-                                    )
-                                } */}
+
                     </div>
                 </InfiniteScroll>
                 {/* <div className="button--container w-3/4 mx-auto self-center flex justify-around p-2 px-4">
