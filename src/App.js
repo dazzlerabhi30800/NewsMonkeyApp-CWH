@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import LoadingBar from 'react-top-loading-bar';
 import Navbar from './Components/Navbar';
 import News from './Components/News';

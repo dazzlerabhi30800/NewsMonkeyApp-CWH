@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import articles from './sampleOutput.json';
 import Spinner from './Spinner';
@@ -39,8 +39,8 @@ const News = (props) => {
 
 
     const fetchMoreData = async () => {
-        this.setState({ page: this.state.page + 1 })
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}&category=${props.category}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}&category=${props.category}`;
+        setPage(page + 1);
         let data = await fetch(url);
         let parsedData = await data.json();
         console.log(parsedData);

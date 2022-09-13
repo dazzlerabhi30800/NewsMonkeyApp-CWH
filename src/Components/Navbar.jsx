@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav className='bg-slate-900 p-4 text-white flex flex-col md:flex-row justify-between md:justify-around items-center'>
+        <nav className='bg-slate-900 p-4 text-white flex flex-col md:flex-row justify-between md:justify-around items-center sticky top-0 z-10'>
             <div className="logo p-2 flex justify-center items-center gap-2 font-bold text-3xl ease-in duration-300 hover:text-pink-600 cursor-pointer">
                 <h1>NewsMonkey</h1>
             </div>
